@@ -1,4 +1,5 @@
 from random import shuffle
+from collections import Counter
 
 class GoFishGame():
     
@@ -53,9 +54,21 @@ class GoFishGame():
         return self.turns_taken >= GoFishGame.MAX_TURNS
     
     def take_player_turn(self):
-        print(f"Taking next turn ({self.turns_taken}) for player {self.next_player}")
+        #print(f"Taking next turn ({self.turns_taken}) for player {self.next_player}")
         
+        my_hand = self.hands[self.next_player]
         # check my hand for sets
+
+        faces = [card[1] for card in my_hand]
+        counts = Counter(faces)
+
+        #print(counts)
+
+        for face in counts:
+            print(f"Player {self.next_player} has {counts[face]} {face} cards")
+            if counts[face] == 4:
+                print(f"A set of 4 {face} was found")
+        
 
         # do I have any cards not part of a full set?
             # if I do, ask someone for one of them
