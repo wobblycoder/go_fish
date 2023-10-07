@@ -5,12 +5,11 @@ class GoFishGame():
     
     MAX_TURNS=10
     CARDS_PER_HAND=7
-    
+    SUITS = ["h", "d", "c", "s"]
+    FACES = [str(_) for _ in range(2, 11)] + ["j", "q", "k", "a"]
+
     def __init__(self, players=4):
         self.players = players
-        self.suits = ["h", "d", "c", "s"]
-        self.faces = [str(i) for i in range(2, 11)]
-        self.faces += ["j", "q", "k", "a"]
         self.deck = []
         self.reset()
 
@@ -32,8 +31,8 @@ class GoFishGame():
 
     def build_deck(self):
         self.deck = []
-        for s in self.suits:
-            for f in self.faces:
+        for s in GoFishGame.SUITS:
+            for f in GoFishGame.FACES:
                 self.deck.append(f"{s}{f}")
         shuffle(self.deck)    
 
